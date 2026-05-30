@@ -6,11 +6,11 @@
 header("Content-Type: application/json; charset=utf-8");
 header("Access-Control-Allow-Origin: *");
 
-define("DB_HOST", "mysql.railway.internal");
+define("DB_HOST", "kodama.proxy.rlwy.net");
 define("DB_NAME", "railway");
 define("DB_USER", "root");
 define("DB_PASS", "SoXdbRTiMVsEfyCeaZDOycukWFDllPQU");
-define("DB_PORT", "3306");
+define("DB_PORT", "13302");
 
 try {
     $pdo = new PDO(
