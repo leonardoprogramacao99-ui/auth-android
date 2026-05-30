@@ -1,22 +1,18 @@
 <?php
-// ── db.php ────────────────────────────────────────────────────────────────
-// Credenciais do Railway MySQL
-// ─────────────────────────────────────────────────────────────────────────
-
 header("Content-Type: application/json; charset=utf-8");
 header("Access-Control-Allow-Origin: *");
 
-define("DB_HOST", "kodama.proxy.rlwy.net");
-define("DB_NAME", "railway");
-define("DB_USER", "root");
-define("DB_PASS", "SoXdbRTiMVsEfyCeaZDOycukWFDllPQU");
-define("DB_PORT", "13302");
+$host = getenv("MYSQLHOST");
+$port = getenv("MYSQLPORT");
+$db   = getenv("MYSQLDATABASE");
+$user = getenv("MYSQLUSER");
+$pass = getenv("MYSQLPASSWORD");
 
 try {
     $pdo = new PDO(
-        "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME . ";charset=utf8mb4",
-        DB_USER,
-        DB_PASS,
+        "mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4",
+        $user,
+        $pass,
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
 } catch (PDOException $e) {
