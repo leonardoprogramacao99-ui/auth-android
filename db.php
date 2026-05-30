@@ -2,20 +2,11 @@
 header("Content-Type: application/json; charset=utf-8");
 header("Access-Control-Allow-Origin: *");
 
-$host = getenv("MYSQLHOST");
-$port = getenv("MYSQLPORT");
-$db   = getenv("MYSQLDATABASE");
-$user = getenv("MYSQLUSER");
-$pass = getenv("MYSQLPASSWORD");
+$host = getenv("MYSQLHOST") ?: "nao-encontrado";
+$port = getenv("MYSQLPORT") ?: "nao-encontrado";
+$db   = getenv("MYSQLDATABASE") ?: "nao-encontrado";
+$user = getenv("MYSQLUSER") ?: "nao-encontrado";
+$pass = getenv("MYSQLPASSWORD") ? "ok" : "nao-encontrado";
 
-try {
-    $pdo = new PDO(
-        "mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4",
-        $user,
-        $pass,
-        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
-} catch (PDOException $e) {
-    echo json_encode(["sucesso" => false, "mensagem" => $e->getMessage()]);
-    exit;
-}
+echo json_encode(["host"=>$host,"port"=>$port,"db"=>$db,"user"=>$user,"pass"=>$pass]);
+exit;
