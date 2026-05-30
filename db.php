@@ -16,6 +16,6 @@ try {
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
 } catch (PDOException $e) {
-    echo json_encode(["sucesso" => false, "mensagem" => "Erro no banco de dados."]);
+    echo json_encode(["sucesso" => false, "mensagem" => $e->getMessage()]);
     exit;
 }
